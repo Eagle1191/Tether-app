@@ -15,20 +15,8 @@ import os.path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#------------ start
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_URL = '/static/'
-
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
-# ----------- end
 
 # Joins the base directory with the template directory.
 TEMPLATE_DIR = os.path.join(BASE_DIR, '/tether/templates')
@@ -107,7 +95,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'capstonedb',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '15vmlTG:re',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -146,21 +134,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-STATICFILES_DIRS = [STATIC_DIR, ]
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 
-# SITE_MEDIA_ROOT = os.path.join(
-#    os.path.dirname(__file__), 'tether/', 'static/', 'site_media'
-# )
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
 
-# if DEBUG:
-#   MEDIA_URL = '/media/'
-#  STATIC_ROOT = os.path.join(os.path.join(BASE_DIR), "/tether/static", "static-only")
-# MEDIA_ROOT = os.path.join(os.path.join(BASE_DIR), "/tether/static", "media")
-# STATICFILES_DIRS = (
-#   os.path.join(os.path.join(BASE_DIR), "/tether/static", "static")
-# )
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
